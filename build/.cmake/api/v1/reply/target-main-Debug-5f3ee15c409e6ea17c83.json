@@ -59,7 +59,7 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "C:/C++ Libs/SDL2/include"
+					"path" : "E:/Lucy/Conway's Game of Life/./dependencies/SDL2/include"
 				},
 				{
 					"backtrace" : 3,
@@ -93,12 +93,12 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "\"C:\\C++ Libs\\SDL2\\lib\\libSDL2main.a\"",
+				"fragment" : "..\\dependencies\\SDL2\\lib\\libSDL2main.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "\"C:\\C++ Libs\\SDL2\\lib\\libSDL2.dll.a\"",
+				"fragment" : "..\\dependencies\\SDL2\\lib\\libSDL2.dll.a",
 				"role" : "libraries"
 			},
 			{

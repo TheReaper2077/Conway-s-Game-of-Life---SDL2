@@ -302,6 +302,18 @@ MEMORYCHECK_COMMAND:FILEPATH=MEMORYCHECK_COMMAND-NOTFOUND
 //File that contains suppressions for the memory checker
 MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
 
+//Path to a library.
+SDL2:FILEPATH=SDL2-NOTFOUND
+
+//Dependencies for the target
+SDL2_LIB_DEPENDS:STATIC=general;SDL2main;general;./dependencies/SDL2/lib/libSDL2main.a;general;./dependencies/SDL2/lib/libSDL2.dll.a;
+
+//Path to a library.
+SDL2main:FILEPATH=SDL2main-NOTFOUND
+
+//Dependencies for the target
+SDL2main_LIB_DEPENDS:STATIC=general;./dependencies/SDL2/lib/libSDL2main.a;
+
 //Name of the computer/site where compile is being run
 SITE:STRING=LP000007029917
 

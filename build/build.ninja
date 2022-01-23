@@ -190,7 +190,7 @@ build cmake_object_order_depends_target_main: phony || CMakeFiles/main.dir
 build CMakeFiles/main.dir/src/main.cpp.obj: CXX_COMPILER__main_Debug E$:/Lucy/Conway's$ Game$ of$ Life/src/main.cpp || cmake_object_order_depends_target_main
   DEP_FILE = CMakeFiles\main.dir\src\main.cpp.obj.d
   FLAGS = -g
-  INCLUDES = -I"C:/C++ Libs/SDL2/include" -I"E:/Lucy/Conway's Game of Life/."
+  INCLUDES = -I"E:/Lucy/Conway's Game of Life/./dependencies/SDL2/include" -I"E:/Lucy/Conway's Game of Life/."
   OBJECT_DIR = CMakeFiles\main.dir
   OBJECT_FILE_DIR = CMakeFiles\main.dir\src
 
@@ -202,9 +202,9 @@ build CMakeFiles/main.dir/src/main.cpp.obj: CXX_COMPILER__main_Debug E$:/Lucy/Co
 #############################################
 # Link the executable main.exe
 
-build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/src/main.cpp.obj | C$:/C++$ Libs/SDL2/lib/libSDL2main.a C$:/C++$ Libs/SDL2/lib/libSDL2.dll.a
+build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/src/main.cpp.obj | ../dependencies/SDL2/lib/libSDL2main.a ../dependencies/SDL2/lib/libSDL2.dll.a
   FLAGS = -g
-  LINK_LIBRARIES = -lmingw32  "C:/C++ Libs/SDL2/lib/libSDL2main.a"  "C:/C++ Libs/SDL2/lib/libSDL2.dll.a"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -lmingw32  ../dependencies/SDL2/lib/libSDL2main.a  ../dependencies/SDL2/lib/libSDL2.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

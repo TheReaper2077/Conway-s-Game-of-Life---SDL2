@@ -1658,6 +1658,54 @@
 			"value" : ""
 		},
 		{
+			"name" : "SDL2",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "SDL2-NOTFOUND"
+		},
+		{
+			"name" : "SDL2_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;SDL2main;general;./dependencies/SDL2/lib/libSDL2main.a;general;./dependencies/SDL2/lib/libSDL2.dll.a;"
+		},
+		{
+			"name" : "SDL2main",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "SDL2main-NOTFOUND"
+		},
+		{
+			"name" : "SDL2main_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;./dependencies/SDL2/lib/libSDL2main.a;"
+		},
+		{
 			"name" : "SITE",
 			"properties" : 
 			[

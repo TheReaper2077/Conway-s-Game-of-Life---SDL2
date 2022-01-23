@@ -1,7 +1,7 @@
 [
 {
   "directory": "E:/Lucy/Conway's Game of Life/build",
-  "command": "C:\\msys64\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe -I\"C:/C++ Libs/SDL2/include\" -I\"E:/Lucy/Conway's Game of Life/.\" -g -o CMakeFiles\\main.dir\\src\\main.cpp.obj -c \"E:\\Lucy\\Conway's Game of Life\\src\\main.cpp\"",
+  "command": "C:\\msys64\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe -I\"E:/Lucy/Conway's Game of Life/./dependencies/SDL2/include\" -I\"E:/Lucy/Conway's Game of Life/.\" -g -o CMakeFiles\\main.dir\\src\\main.cpp.obj -c \"E:\\Lucy\\Conway's Game of Life\\src\\main.cpp\"",
   "file": "E:\\Lucy\\Conway's Game of Life\\src\\main.cpp"
 }
 ]

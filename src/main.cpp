@@ -118,8 +118,8 @@ void update() {
 }
 
 void draw_grid() {
-	for (int y = 0; y != sizeof(grid)/sizeof(grid[0]); y++) {
-		for (int x = 0; x != sizeof(grid[y])/sizeof(grid[y][0]); x++) {
+	for (int y = 0; y != HEIGHT/gridsize; y++) {
+		for (int x = 0; x != WIDTH/gridsize; x++) {
 			rect = {x*gridsize, y*gridsize, gridsize, gridsize};
 			if (grid[y + posY][x + posX] == LIVING) {
 				LIVING_COLOR;

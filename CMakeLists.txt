@@ -9,12 +9,12 @@ add_executable(main ${TARGET_SRC})
 
 #---------------------------------------------------------------------------#	// Library Imports Here
 
-include_directories("C:\\C++ Libs\\SDL2\\include" ".")
+include_directories("./dependencies/SDL2/include" ".")
 
 ADD_LIBRARY(SDL2 STATIC IMPORTED)
-SET_TARGET_PROPERTIES(SDL2 PROPERTIES IMPORTED_LOCATION "C:\\C++ Libs\\SDL2\\lib\\libSDL2.dll.a")
+SET_TARGET_PROPERTIES(SDL2 PROPERTIES IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/dependencies/SDL2/lib/libSDL2.dll.a")
 ADD_LIBRARY(SDL2main STATIC IMPORTED)
-SET_TARGET_PROPERTIES(SDL2main PROPERTIES IMPORTED_LOCATION "C:\\C++ Libs\\SDL2\\lib\\libSDL2main.a")
+SET_TARGET_PROPERTIES(SDL2main PROPERTIES IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/dependencies/SDL2/lib/libSDL2main.a")
 
 target_link_libraries(main PUBLIC mingw32 SDL2main SDL2)
 
