@@ -13,8 +13,8 @@
 #include "SDL2/SDL_video.h"
 #include "assert.h"
 
-#define WIDTH 1280
-#define HEIGHT 640
+#define WIDTH 1376
+#define HEIGHT 720
 #define TITLE "Conway's Game of Life"
 
 #define ZOOM_IN SDLK_i
@@ -31,7 +31,7 @@
 
 #define LIVING_COLOR SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 #define GRID_COLOR SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-#define BACKGROUND_COLOR SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+#define BACKGROUND_COLOR SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 SDL_Window *window = nullptr;
 SDL_Renderer *renderer = nullptr;
@@ -43,15 +43,18 @@ enum BLOCK {
 	LIVING
 };
 
-const int grid_width = WIDTH/2, grid_heigth = HEIGHT/2;
+int gridsize = 2;
+const int grid_width = WIDTH/2, grid_heigth = WIDTH/2;
+
+
 bool isRunning;
 double dt;
 const int UPS = 60;
 uint8_t grid[grid_heigth][grid_width];
 bool mouse_pressed = false;
-int gridsize = 16;
+
 bool display_grid = false;
-int posX = 0, posY = 0;
+int posX = 0, posY = grid_heigth/2 - (grid_heigth/2)/2;
 
 void select_block() {
 	grid[(event->motion.y / gridsize) + posY][(event->motion.x / gridsize) + posX] = LIVING;
@@ -60,7 +63,7 @@ void select_block() {
 void randomize_grid() {
 	for (int y = 0; y != sizeof(grid)/sizeof(grid[0]); y++) {
 		for (int x = 0; x != sizeof(grid[y])/sizeof(grid[y][0]); x++) {
-			grid[y][x] = BLOCK(rand() % 2);
+			grid[y][x] = BLOCK((x*y) % 2);
 		}
 	}
 }
@@ -118,11 +121,11 @@ void update() {
 }
 
 void draw_grid() {
-	for (int y = 0; y != HEIGHT/gridsize; y++) {
-		for (int x = 0; x != WIDTH/gridsize; x++) {
+	for (int y = 0; y != grid_heigth; y++) {
+		for (int x = 0; x != grid_width; x++) {
 			rect = {x*gridsize, y*gridsize, gridsize, gridsize};
 			if (grid[y + posY][x + posX] == LIVING) {
-				LIVING_COLOR;
+				SDL_SetRenderDrawColor(renderer, 0, rand() % 255, rand() % 255, 255);
 				SDL_RenderFillRect(renderer, &rect);
 			}
 
@@ -136,7 +139,7 @@ void draw_grid() {
 
 void init() {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_FULLSCREEN);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	assert(window && renderer);
 
@@ -146,7 +149,7 @@ void init() {
 
 int main(int argc, char **argv) {
 	init();
-	grid[0 + 2][1 + 2] = grid[1 + 2][2 + 2] = grid[2 + 2][2 + 2] = grid[2 + 2][1 + 2] = grid[2 + 2][0 + 2] = LIVING;
+	// grid[0 + 2][1 + 2] = grid[1 + 2][2 + 2] = grid[2 + 2][2 + 2] = grid[2 + 2][1 + 2] = grid[2 + 2][0 + 2] = LIVING;
 	float count = 0;
 	bool auto_m = false;
 
