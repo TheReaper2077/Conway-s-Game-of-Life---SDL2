@@ -57,7 +57,17 @@
 		"streambuf": "cpp",
 		"cinttypes": "cpp",
 		"typeinfo": "cpp",
-		"fstream": "cpp"
+		"fstream": "cpp",
+		"condition_variable": "cpp",
+		"list": "cpp",
+		"map": "cpp",
+		"unordered_set": "cpp",
+		"mutex": "cpp",
+		"semaphore": "cpp",
+		"shared_mutex": "cpp",
+		"sstream": "cpp",
+		"stop_token": "cpp",
+		"thread": "cpp"
 	},
 	"C_Cpp.codeAnalysis.clangTidy.enabled": false
 	// clang

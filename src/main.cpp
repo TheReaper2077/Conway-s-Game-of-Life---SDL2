@@ -7,7 +7,6 @@
 #include <ratio>
 #include <stdint.h>
 #include <stdio.h>
-#include <unordered_set>
 #include <utility>
 #include <vector>
 #include "SDL2/SDL_stdinc.h"
@@ -17,6 +16,18 @@
 #define WIDTH 1280
 #define HEIGHT 640
 #define TITLE "Conway's Game of Life"
+
+#define ZOOM_IN SDLK_i
+#define ZOOM_OUT SDLK_o
+#define AUTOMATIC SDLK_SPACE
+#define MOVE_UP SDLK_w
+#define MOVE_DOWN SDLK_s
+#define MOVE_RIGHT SDLK_d
+#define MOVE_LEFT SDLK_a
+#define STEP SDLK_e
+#define RANDOMIZE SDLK_r
+#define CLEAR SDLK_c
+#define SHOW_GRID SDLK_v
 
 #define LIVING_COLOR SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 #define GRID_COLOR SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -32,14 +43,19 @@ enum BLOCK {
 	LIVING
 };
 
-const int grid_width = WIDTH/4, grid_heigth = HEIGHT/4;
-
+const int grid_width = WIDTH/2, grid_heigth = HEIGHT/2;
 bool isRunning;
 double dt;
 const int UPS = 60;
 uint8_t grid[grid_heigth][grid_width];
-// std::vector<std::vector<uint8_t>> grid;
+bool mouse_pressed = false;
 int gridsize = 16;
+bool display_grid = false;
+int posX = 0, posY = 0;
+
+void select_block() {
+	grid[(event->motion.y / gridsize) + posY][(event->motion.x / gridsize) + posX] = LIVING;
+}
 
 void randomize_grid() {
 	for (int y = 0; y != sizeof(grid)/sizeof(grid[0]); y++) {
@@ -105,13 +121,15 @@ void draw_grid() {
 	for (int y = 0; y != sizeof(grid)/sizeof(grid[0]); y++) {
 		for (int x = 0; x != sizeof(grid[y])/sizeof(grid[y][0]); x++) {
 			rect = {x*gridsize, y*gridsize, gridsize, gridsize};
-			if (grid[y][x] == LIVING) {
+			if (grid[y + posY][x + posX] == LIVING) {
 				LIVING_COLOR;
 				SDL_RenderFillRect(renderer, &rect);
 			}
 
-			GRID_COLOR;
-			SDL_RenderDrawRect(renderer, &rect);
+			if (display_grid) {
+				GRID_COLOR;
+				SDL_RenderDrawRect(renderer, &rect);
+			}
 		}
 	}
 }
@@ -141,26 +159,48 @@ int main(int argc, char **argv) {
 			}
 			if (event->type == SDL_KEYDOWN) {
 				switch (event->key.keysym.sym) {
-					case SDLK_e:
+					case STEP:
 						update();
 						break;
-					case SDLK_r:
+					case RANDOMIZE:
 						randomize_grid();
 						break;
-					case SDLK_c:
+					case CLEAR:
 						clear_grid();
 						break;
-					case SDLK_i:
+					case ZOOM_IN:
 						gridsize++;
 						break;
-					case SDLK_d:
+					case ZOOM_OUT:
 						gridsize--;
 						break;
-					case SDLK_s:
+					case AUTOMATIC:
 						auto_m = !auto_m;
+						break;
+					case SHOW_GRID:
+						display_grid = !display_grid;
+						break;
+					case MOVE_UP:
+						if (posY != 0) posY--;
+						break;
+					case MOVE_DOWN:
+						posY++;
+						break;
+					case MOVE_LEFT:
+						if (posX != 0) posX--;
+						break;
+					case MOVE_RIGHT:
+						posX++;
 						break;
 				}
 			}
+			if (event->type == SDL_MOUSEBUTTONDOWN) {
+				select_block();
+			}
+		}
+
+		if (mouse_pressed) {
+			select_block();
 		}
 
 		BACKGROUND_COLOR;
