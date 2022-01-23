@@ -206,7 +206,7 @@ build main.exe: CXX_EXECUTABLE_LINKER__main_Debug CMakeFiles/main.dir/src/main.c
   FLAGS = -g
   LINK_LIBRARIES = -lmingw32  ../dependencies/SDL2/lib/libSDL2main.a  ../dependencies/SDL2/lib/libSDL2.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\main.dir
-  POST_BUILD = cd .
+  POST_BUILD = cmd.exe /C "cd /D "E:\Lucy\Conway's Game of Life\build" && C:\msys64\mingw64\bin\cmake.exe -E copy_directory "E:/Lucy/Conway's Game of Life/dependencies/SDL2/bin/" "E:/Lucy/Conway's Game of Life/build""
   PRE_LINK = cd .
   TARGET_FILE = main.exe
   TARGET_IMPLIB = libmain.dll.a
