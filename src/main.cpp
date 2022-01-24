@@ -13,9 +13,10 @@
 #include "SDL2/SDL_video.h"
 #include "assert.h"
 
-#define WIDTH 1376
-#define HEIGHT 720
+#define WIDTH 1280
+#define HEIGHT 640
 #define TITLE "Conway's Game of Life"
+#define FULLSCREEN false
 
 #define ZOOM_IN SDLK_i
 #define ZOOM_OUT SDLK_o
@@ -63,7 +64,7 @@ void select_block() {
 void randomize_grid() {
 	for (int y = 0; y != sizeof(grid)/sizeof(grid[0]); y++) {
 		for (int x = 0; x != sizeof(grid[y])/sizeof(grid[y][0]); x++) {
-			grid[y][x] = BLOCK((x*y) % 2);
+			grid[y][x] = BLOCK(rand()*17 % 2);
 		}
 	}
 }
@@ -139,7 +140,7 @@ void draw_grid() {
 
 void init() {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_FULLSCREEN);
+	window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, (FULLSCREEN) ? SDL_WINDOW_FULLSCREEN: SDL_WINDOW_SHOWN);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	assert(window && renderer);
 
